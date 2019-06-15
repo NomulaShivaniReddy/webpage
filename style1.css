@@ -1,0 +1,11 @@
+body{
+    background-color:skyblue;
+    text-align: center;
+}
+h1{
+    color: darkmagenta;
+}
+input{
+    height: 30px;
+    width: 220px;
+}

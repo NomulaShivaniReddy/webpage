@@ -1,0 +1,18 @@
+h1{
+    background-color: aqua;
+    text-align: center;
+    font-size:200%;
+    font-family: fantasy;
+    color: blueviolet;
+}
+h2{
+    background-color: darkgray;
+    font-size: 150%;
+    color: green;
+}
+h3{
+    background-color: black;
+    font-size: 150%;
+    color: yellow;
+}
+
