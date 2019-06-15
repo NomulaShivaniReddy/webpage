@@ -1,0 +1,50 @@
+import React from 'react';
+import { StyleSheet, Button, Alert, TextInput, View} from 'react-native';
+
+export default class App extends React.Component {
+constructor(props) {
+  super(props);
+  this.state = {
+    email: "",
+    password: ""
+  };
+}
+onLogin() {
+  const {email, password} = this.state;
+  Alert.alert('Credentials', `${email} + ${password}`);
+}
+render(){
+  return (
+    <View style={styles.container}>
+      <TextInput style={styles.input}
+        onChangeText={(text) => this.setState({email: text})}
+        placeholder="E-Mail" />
+      <TextInput style={styles.input}
+        onChangeText={(text) => this.setState({password:text})}
+        secureTextEntry={true}
+        placeholder="Password" />
+      <Button
+        onPress={this.onLogin.bind(this)}
+        title="Login"
+        color="blue"
+        style={styles.input} />
+    </View>
+  );
+}
+}
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  backgroundColor: 'white',
+  },
+  input: {
+  width : 200,
+  height: 35,
+  padding: 10,
+  borderColor: 'black',
+  borderWidth: 1,
+  marginBottom: 20,
+  },
+});

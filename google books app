@@ -1,0 +1,111 @@
+import React from 'react';
+import { Button, Text, View, TextInput } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
+
+
+class ToReadScreen extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      
+        <Button
+          title="Search"
+          onPress={() => this.props.navigation.navigate('Search')}
+        />
+      </View>
+    );
+  }
+}
+class SearchScreen extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'top', alignItems: 'center' }}>
+        <TextInput style={{Width: 500,height: 30,borderColor:'black',Padding: 20,borderWidth: 2,marginBottom: 20}}
+        onChangeText={(text) => this.setState({search: text})}
+        placeholder="Search" />
+        <Button
+          title="Resuts"
+          onPress={() => this.props.navigation.navigate('Results')}
+        />
+      </View>
+    );
+  }
+}
+      
+class ResultsScreen extends  React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Results</Text>
+      </View>
+    );
+  }
+}
+class DoneScreen extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Done</Text>
+      </View>
+    );
+  }
+}
+
+
+
+
+ class ReadingScreen extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Reading</Text>
+      </View>
+    );
+  }
+}
+
+const ToReadStack = createStackNavigator({
+   ToRead: { screen: ToReadScreen },
+   Search: { screen: SearchScreen},
+   Results: { screen: ResultsScreen},
+  
+});
+
+const ReadingStack = createStackNavigator({
+  Reading: { screen: ReadingScreen },
+  
+});
+const DoneStack = createStackNavigator({
+  Done: { screen: DoneScreen },
+  
+});
+
+export default createAppContainer(createBottomTabNavigator(
+  {
+    ToRead: { screen: ToReadStack },
+    Reading: { screen: ReadingStack },
+    Done: { screen: DoneStack},
+  },
+  {
+    defaultNavigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, tintColor }) => {
+        const { routeName } = navigation.state;
+        let iconName;
+        if (routeName === 'Home') {
+          iconName = `ios-information-circle${focused ? '' : '-outline'}`;
+        } else if (routeName === 'Settings') {
+          iconName = `ios-options${focused ? '' : '-outline'}`;
+        }
+
+        // You can return any component that you like here! We usually use an
+        // icon component from react-native-vector-icons
+        return <Ionicons name={iconName} size={25} color={tintColor} />;
+      },
+    }),
+    tabBarOptions: {
+      activeTintColor: 'gray',
+      inactiveTintColor: 'blue',
+    },
+  }
+));
